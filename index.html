@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社デリバリー九州 事業成長インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - KPIs: 'Single Big Number' (HTML/CSS) - Goal: Inform - Justification: Quick overview of key metrics.
+        - Sales Trend (人時売上高): Bar Chart (Chart.js/Canvas) - Goal: Change/Inform - Justification: Visual comparison of current vs. target. - NO SVG.
+        - ABC Analysis: Donut Chart (Chart.js/Canvas) - Goal: Compare/Inform - Justification: Shows contribution of A-rank items. - NO SVG.
+        - RFM Segments: HTML/CSS Cards - Goal: Organize/Inform - Justification: Clear presentation of customer groups. - NO SVG.
+        - Staffing Impact: 'Single Big Number'/Key Phrase (HTML/CSS) - Goal: Inform - Justification: Highlights HR importance.
+        - Offline Promo: HTML/CSS with Unicode Icons - Goal: Inform - Justification: Visually engaging examples. - NO SVG.
+        - Recruitment Targets: HTML/CSS with Unicode Icons - Goal: Organize/Inform - Justification: Clear categories. - NO SVG.
+        - Retention Keys: HTML List - Goal: Inform - Justification: Concise points.
+        - Site Selection: HTML List - Goal: Organize/Inform - Justification: Key criteria.
+        - Roadmap: HTML/CSS Timeline - Goal: Organize/Change - Justification: Visual flow of plans. - NO SVG/Mermaid.
+        - All text and data extracted from the provided Japanese report.
+        -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif; /* Japanese font */
+            background-color: #FFF8E1; /* Cornsilk - Light Creamy Background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Adjusted for infographic context */
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px; /* Base height */
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+                max-height: 400px;
+            }
+        }
+        .kpi-value {
+            font-size: 2.5rem; /* Larger for big number effect */
+            font-weight: 700;
+            color: #FF7F50; /* Coral */
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #555;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #20B2AA; /* LightSeaGreen */
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #FFD700; /* Gold */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #FF7F50; /* Coral accent */
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem; /* Space for icon/line */
+            padding-bottom: 1.5rem;
+            border-left: 3px solid #20B2AA; /* LightSeaGreen */
+        }
+        .timeline-item:last-child {
+            border-left: none;
+            padding-left: calc(2.5rem - 3px); /* Adjust for border removal */
+             border-left: 3px solid transparent; /* Keep space but hide line */
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -0.875rem; /* (28px/2) - (border-width/2) if icon is 28px wide */
+            top: 0;
+            background-color: #FFD700; /* Gold */
+            color: #FFF8E1;
+            border-radius: 50%;
+            width: 1.75rem; /* 28px */
+            height: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+         h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #008080; /* Teal */
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #FF7F50; /* Coral */
+            margin-bottom: 0.5rem;
+        }
+        .intro-text, .section-intro-text {
+            font-size: 1.125rem;
+            color: #4A5568; /* Tailwind gray-700 */
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <header class="py-8 bg-white shadow-md">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold" style="color: #FF7F50;">株式会社デリバリー九州</h1>
+            <p class="text-2xl" style="color: #20B2AA;">事業成長戦略 インフォグラフィック</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="introduction" class="mb-16">
+            <p class="intro-text">
+                本インフォグラフィックは、株式会社デリバリー九州様の持続的な成長戦略の核心を視覚的に示します。既存店改善と人材戦略を軸に、確実な売上拡大と将来的な店舗展開への道筋を明らかにします。
+            </p>
+        </section>
+
+        <section id="current-snapshot" class="mb-16">
+            <h2 class="section-title">📊 現状のスナップショット</h2>
+            <p class="section-intro-text">データに基づき現状を把握し、成長への課題と機会を明確にします。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="card text-center">
+                    <div class="kpi-value">62%</div>
+                    <div class="kpi-label">現在のFL比率</div>
+                    <p class="text-sm text-gray-500 mt-1">(目標: 58% - 改善が必要)</p>
+                </div>
+                <div class="card text-center">
+                    <div class="kpi-value">3,200<span class="text-xl">円</span></div>
+                    <div class="kpi-label">現在の人時売上高</div>
+                    <p class="text-sm text-gray-500 mt-1">(目標: 3,800円 - 効率化の余地あり)</p>
+                </div>
+                <div class="card text-center">
+                    <div class="kpi-value">103%</div>
+                    <div class="kpi-label">客数 前年同期比</div>
+                    <p class="text-sm text-gray-500 mt-1">(新規顧客獲得に課題)</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card">
+                    <h3>📈 人時売上高：現状と目標</h3>
+                    <p class="text-sm text-gray-600 mb-4">従業員一人当たりの生産性を示す人時売上高。目標達成に向けた業務効率化が鍵となります。</p>
+                    <div class="chart-container">
+                        <canvas id="humanHourSalesChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⭐ 収益性の高いメニュー (ABC分析より)</h3>
+                    <p class="text-sm text-gray-600 mb-4">Aランクメニュー（カレー、オムライス、エビピラフ等）が売上・利益の柱。これらの貢献度を維持・向上が重要です。</p>
+                    <div class="chart-container">
+                        <canvas id="abcAnalysisChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 card">
+                <h3>🎯 主要顧客セグメント (RFM分析より)</h3>
+                <p class="text-sm text-gray-600 mb-6 text-center">顧客層に合わせたアプローチで、リピーター育成と売上安定化を目指します。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-coral-100 rounded-lg border-l-4 border-coral-500" style="background-color: #FFF0E6; border-color: #FF7F50;">
+                        <h4 class="font-semibold" style="color: #FF7F50;">👑 優良顧客</h4>
+                        <p class="text-xs text-gray-600">最近来店、頻度高、高額利用。限定イベントや特別オファーでロイヤルティ向上。</p>
+                    </div>
+                    <div class="p-4 bg-teal-100 rounded-lg border-l-4 border-teal-500" style="background-color: #E6FFFA; border-color: #20B2AA;">
+                        <h4 class="font-semibold" style="color: #20B2AA;">🚀 新規顧客</h4>
+                        <p class="text-xs text-gray-600">最近初回利用。再来店クーポンやポイント付与でリピート促進。</p>
+                    </div>
+                    <div class="p-4 bg-gold-100 rounded-lg border-l-4 border-gold-500" style="background-color: #FFF9E6; border-color: #FFD700;">
+                        <h4 class="font-semibold" style="color: #B8860B;">🛌 休眠顧客</h4>
+                        <p class="text-xs text-gray-600">長期間来店なし。パーソナライズ情報や再来店特典で呼び戻し。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="store-improvement" class="mb-16">
+            <h2 class="section-title">🛠️ 成長の柱：既存店強化</h2>
+            <p class="section-intro-text">従業員満足度向上と効果的なプロモーションで、既存店の売上を最大化します。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3>💪 人員配置のインパクト</h3>
+                    <p class="text-sm text-gray-600 mb-2">適切な人員配置と従業員満足度は、サービス品質と売上に直結します。</p>
+                    <div class="text-center py-4">
+                        <p class="text-2xl font-bold" style="color: #FF7F50;">従業員満足度 <span class="text-3xl">20</span>点向上で</p>
+                        <p class="text-3xl font-bold" style="color: #20B2AA;">売上 <span class="text-4xl">15%</span> 増の事例も！</p>
+                         <p class="text-xs text-gray-500 mt-2">(出典: レポート内事例)</p>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">シフト最適化と多能工化推進で、働きがいと生産性を両立させます。</p>
+                </div>
+                <div class="card">
+                    <h3>🎉 オフライン集客戦略</h3>
+                    <p class="text-sm text-gray-600 mb-4">ユニークな先着順キャンペーンで話題性と来店を促進します。</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">🎟️</span>
+                            <div>
+                                <h4 class="text-base font-semibold">Googleレビューで１杯無料</h4>
+                                <p class="text-xs text-gray-500">口コミ促進と新規顧客獲得を同時に！</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">✨</span>
+                            <div>
+                                <h4 class="text-base font-semibold">先着〇名様限定 特別メニュー</h4>
+                                <p class="text-xs text-gray-500">希少性で来店意欲を刺激し、特別感を演出。</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-2xl mr-3">📢</span>
+                            <div>
+                                <h4 class="text-base font-semibold">地域イベント連携</h4>
+                                <p class="text-xs text-gray-500">地元密着でファンを増やし、コミュニティを活性化。</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="text-red-600 text-xs mt-3 font-semibold">⚠️注意: 十分な人員確保が成功の絶対条件！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hr-strategy" class="mb-16">
+            <h2 class="section-title">🤝 成長の柱：人材戦略</h2>
+            <p class="section-intro-text">企業の成長は「人」から。魅力的な職場づくりで優秀な人材を確保・育成します。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3>🎯 採用ターゲットと訴求ポイント</h3>
+                    <p class="text-sm text-gray-600 mb-4">多様な人材層に響くメッセージで、採用力を強化します。</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 rounded-lg" style="background-color: #E6FFFA;">
+                            <span class="text-3xl mr-4">🧑‍🎓</span>
+                            <div>
+                                <h4 class="text-base font-semibold" style="color:#20B2AA;">学生アルバイト</h4>
+                                <p class="text-xs text-gray-600">「自由シフト」「まかない有」でアピール。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 rounded-lg" style="background-color: #FFF0E6;">
+                            <span class="text-3xl mr-4">👩‍🍳</span>
+                            <div>
+                                <h4 class="text-base font-semibold" style="color:#FF7F50;">主婦・パート</h4>
+                                <p class="text-xs text-gray-600">「短時間OK」「家庭と両立」を強調。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 rounded-lg" style="background-color: #FFF9E6;">
+                            <span class="text-3xl mr-4">👨‍💼</span>
+                            <div>
+                                <h4 class="text-base font-semibold" style="color:#B8860B;">正社員 (未経験可)</h4>
+                                <p class="text-xs text-gray-600">「充実研修」「キャリアパス」で将来性提示。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🔑 定着率向上の鍵</h3>
+                    <p class="text-sm text-gray-600 mb-4">採用後の手厚いサポートで、従業員の長期的な活躍を支援します。</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>分かりやすい新人研修とOJT</li>
+                        <li>経験豊富なメンターによるサポート</li>
+                        <li>定期的な面談による不安解消</li>
+                        <li>成長を可視化する評価制度</li>
+                        <li>キャリアアップ支援と明確なパス</li>
+                        <li>風通しの良いコミュニケーション</li>
+                    </ul>
+                    <p class="mt-4 text-sm font-semibold" style="color: #008080;">従業員への投資は、長期的な売上とブランド価値を高める戦略的投資です。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="expansion-plan" class="mb-16">
+            <h2 class="section-title">🚀 未来への拡大：店舗展開</h2>
+            <p class="section-intro-text">既存店の成功を基盤に、計画的な店舗拡大で持続的な成長を目指します。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3>🗺️ 出店成功の鍵：立地選定</h3>
+                    <p class="text-sm text-gray-600 mb-4">データに基づいた慎重な市場分析と立地選定が不可欠です。</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>ターゲット顧客層の人口動態分析</li>
+                        <li>交通量、視認性、アクセスの評価</li>
+                        <li>競合環境の詳細な調査</li>
+                        <li>賃料相場と収益性のバランス</li>
+                        <li>自社コンセプトとの整合性確認</li>
+                    </ul>
+                    <h4 class="mt-4">財務予測のポイント</h4>
+                     <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>現実的な売上予測（客数×客単価×回転率）</li>
+                        <li>初期費用（物件取得、内外装、設備）の精査</li>
+                        <li>運営費用（FL比率60%以内目標）の試算</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📈 成長ロードマップ (短期・中期)</h3>
+                    <p class="text-sm text-gray-600 mb-6">段階的なステップで、着実な成長を実現します。</p>
+                    <div class="relative">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">1</div>
+                            <h4 class="font-semibold text-base" style="color: #20B2AA;">短期 (～6ヶ月)</h4>
+                            <p class="text-xs text-gray-600">既存店運用改善の実行 (POS活用、シフト最適化)。人材確保強化 (求人、オンボーディング)。オフライン施策テスト。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">2</div>
+                            <h4 class="font-semibold text-base" style="color: #20B2AA;">中期 (6ヶ月～2年)</h4>
+                            <p class="text-xs text-gray-600">既存店改善の深化、人材育成本格化。店舗拡大準備 (候補地調査、財務計画、標準化プロセス確立)。</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-icon" style="background-color: #FF7F50;">🚀</div>
+                            <h4 class="font-semibold text-base" style="color: #FF7F50;">長期 (2年～5年)</h4>
+                            <p class="text-xs text-gray-600">持続的な店舗拡大、ブランド確立、組織体制強化、新規事業検討。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-10 card" style="background-color: #20B2AA; color: white; border-left-color: #FFD700;">
+            <h2 class="text-3xl font-bold mb-4" style="color: white; border-bottom: none;">さらなる成長に向けて</h2>
+            <p class="text-lg max-w-3xl mx-auto mb-6">
+                本戦略は、データ分析、従業員満足度向上、効果的なプロモーション、そして計画的な拡大を組み合わせることで、株式会社デリバリー九州様の持続的な成長を支援します。
+            </p>
+            <p class="text-lg max-w-3xl mx-auto font-semibold" style="color: #FFD700;">
+                市場の変化に柔軟に対応し、本計画を着実に実行することで、飲食業界での確固たる地位を築き、未来を切り拓きましょう。
+            </p>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 mt-12" style="background-color: #333; color: #FFF8E1;">
+        <p class="text-sm">&copy; 株式会社デリバリー九州 事業成長戦略インフォグラフィック (デモ)</p>
+    </footer>
+
+    <script>
+        function processChartLabel(label) {
+            if (typeof label !== 'string') return label;
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if (currentLine.length === 0) {
+                    currentLine = word;
+                } else if ((currentLine + ' ' + word).length <= maxLength + 2) { // Allow slight overrun for last word
+                    currentLine += ' ' + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines.length > 0 ? lines : [label]; // Fallback if splitting fails
+        }
+
+        const chartTooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: true, labels: { color: '#333333', font: { size: 12 } } },
+                tooltip: {
+                    backgroundColor: '#333333',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    callbacks: { title: chartTooltipTitleCallback }
+                }
+            },
+            scales: {
+                x: { ticks: { color: '#333333', font: { size: 11 } }, grid: { color: '#DDDDDD' } },
+                y: { ticks: { color: '#333333', font: { size: 11 } }, grid: { color: '#DDDDDD' }, beginAtZero: true }
+            }
+        };
+
+        // 人時売上高チャート (Bar Chart)
+        const humanHourSalesCtx = document.getElementById('humanHourSalesChart')?.getContext('2d');
+        if (humanHourSalesCtx) {
+            new Chart(humanHourSalesCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['現状の人時売上高', '目標の人時売上高'],
+                    datasets: [{
+                        label: '人時売上高 (円)',
+                        data: [3200, 3800],
+                        backgroundColor: ['#FF7F50', '#20B2AA'], // Coral, LightSeaGreen
+                        borderColor: ['#FF6347', '#008080'],     // Tomato, Teal
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...commonChartOptions, plugins: { ...commonChartOptions.plugins, legend: { display: false } } }
+            });
+        }
+
+        // ABC分析 ドーナツチャート
+        const abcAnalysisCtx = document.getElementById('abcAnalysisChart')?.getContext('2d');
+        if (abcAnalysisCtx) {
+            const aRankMenuLabels = ['カレーライス', 'オムライス', 'エビピラフ'];
+            const processedLabels = aRankMenuLabels.map(label => processChartLabel(label));
+            
+            new Chart(abcAnalysisCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: processedLabels.map(l => Array.isArray(l) ? l.join(' ') : l).concat(['その他B,Cランク']), // Use joined for display if needed, or keep array for multi-line
+                    datasets: [{
+                        label: '売上構成比 (Aランク vs その他)',
+                        data: [112500 + 88000 + 60000, 463000 - (112500 + 88000 + 60000)], // Aランク合計 vs その他
+                        backgroundColor: ['#FFD700', '#FF7F50', '#20B2AA', '#CCCCCC'], // Gold, Coral, LightSeaGreen, LightGray
+                        hoverOffset: 4
+                    }]
+                },
+                options: { ...commonChartOptions, 
+                    plugins: {
+                        ...commonChartOptions.plugins,
+                        tooltip: {
+                             ...commonChartOptions.plugins.tooltip,
+                            callbacks: {
+                                title: chartTooltipTitleCallback, // Ensure this is correctly assigned
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    const value = context.raw;
+                                    label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(value);
+                                    
+                                    const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1) + '%';
+                                    return `${context.label}: ${label} (${percentage})`;
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'bottom',
+                             labels: {
+                                color: '#333333',
+                                font: { size: 10 },
+                                // Custom label generation if needed for multi-line, Chart.js handles array labels by default
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            const meta = chart.getDatasetMeta(0);
+                                            const style = meta.controller.getStyle(i);
+                                            return {
+                                                text: Array.isArray(label) ? label.join(' ') : label, // Join for legend display
+                                                fillStyle: style.backgroundColor,
+                                                strokeStyle: style.borderColor,
+                                                lineWidth: style.borderWidth,
+                                                hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
